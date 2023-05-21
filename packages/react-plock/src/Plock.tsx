@@ -1,3 +1,5 @@
+'use client'
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import * as React from "react";
 
 export function useMediaValues(
@@ -78,9 +80,12 @@ export function Masonry<T>({
   const chunks = createChunks<T>(items, columns);
   const dataColumns = createDataColumns<T>(chunks, columns);
 
+  const [parent, _] = useAutoAnimate();
+
   return (
     <div
       {...rest}
+      ref={parent}
       style={{
         display: "grid",
         alignItems: "start",
